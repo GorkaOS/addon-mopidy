@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:4.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/debian-base/amd64:4.2.3
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -19,18 +19,19 @@ RUN \
         nginx=1.14.2-2+deb10u4 \
         git=1:2.20.1-2+deb10u3 \
     \
-    && curl -L https://apt.mopidy.com/mopidy.gpg | apt-key add - \
-    && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
+    && mkdir -p /usr/local/share/keyrings \
+    && curl -L https://apt.mopidy.com/mopidy.gpg -o /usr/local/share/keyrings/mopidy-archive-keyring.gpg \
+    && curl -L https://apt.mopidy.com/buster.list -o /etc/apt/sources.list.d/mopidy.list \
     \
     && apt-get update \
     \
     && apt-get install -y --no-install-recommends \
         libffi-dev=3.2.1-9 \
-        libxml2-dev=2.9.4+dfsg1-7+deb10u2 \
+        libxml2-dev=2.9.4+dfsg1-7+deb10u3 \
         libxslt1-dev=1.1.32-2.2~deb10u1 \
         libasound2-dev=1.1.8-1 \
-        libspotify12=12.1.51-1 \
-        libspotify-dev=12.1.51-1 \
+        libspotify12 \
+        libspotify-dev \
         zlib1g-dev=1:1.2.11.dfsg-1 \
         build-essential=12.6 \
         python3-dev=3.7.3-1 \
