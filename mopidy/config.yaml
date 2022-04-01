@@ -8,7 +8,7 @@ url: https://github.com/hassio-addons/addon-mopidy
 ingress: true
 ingress_entry: iris/
 ingress_stream: true
-image: conn.hyboria:5000/home-assistant/{arch}-addon-mopidy
+image: gorkaos/{arch}-addon-mopidy
 arch:
   - amd64
   - armv7
