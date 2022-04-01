@@ -77,6 +77,10 @@ RUN mkdir -p /var/log/nginx && ln -sf /dev/stdout /var/log/nginx/access.log && l
 # Copy root filesystem
 COPY rootfs /
 
+RUN \
+    sed -i 's@_USE_SUDO = True@_USE_SUDO = False@' /usr/local/lib/python3.7/dist-packages/mopidy_iris/system.py \
+    && sed -i 's@/config/@/etc/mopidy/@' /usr/local/lib/python3.7/dist-packages/mopidy_iris/system.sh
+
 # Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
